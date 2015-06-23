@@ -1,0 +1,95 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+  <div class="container">
+    <div class="col-sm-4">
+      <div ng-include="'components/sidebar/sidebar.html'"></div>
+    </div>
+    <div class="col-sm-8" id="my-company">
+      <!-- {{companies|json}}
+      <hr/>
+      {{my_current_company|json}} -->
+
+      	<div class="col-sm-8 panel">
+			<br/>
+      		<div ng-show="my_current_company.verified" class="verification-banner" style="color:green;border:1px solid #dfdfdf;padding:10px;margin-bottom:20px;">
+				<i class="fa fa-check-circle-o fa-3x" style="float:left;" ></i>
+				<span style="line-height:40px;height:40px;margin-left:10px;">{{my_current_company.company.name}} is your verified company.</span>
+			</div>
+
+			<div class="row m">
+				<div class="col-xs-3 align-right">
+					<label>Company</label>
+				</div>
+				<div class="col-xs-9">
+					<select ng-model="co" ng-options="co as co.name for co in companies" ng-disabled="company.verified === true||company.verified===false">
+						<option value="">Select Company</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row m">
+				<div class="col-xs-3 align-right">
+					<label>Enter Email</label>
+				</div>
+				<div class="col-xs-9">
+					<input type="text" ng-disabled="company.verified === true||company.verified===false" ng-model="co.mailUser"><span ng-show="co.mailServer">@{{co.mailServer}}</span>
+				</div>
+			</div>
+
+			<div class="row m">
+				<div class="col-xs-3 align-right">
+					
+				</div>
+				<div class="col-xs-9">
+					<button class="btn btn-gray" ng-hide = "my_current_company.name" ng-disabled="!co.mailUser" ng-click="send()">Send Verification Code</button> 
+					<button class="btn btn-gray" ng-show = "my_current_company.name"  ng-click="company.verified = 0">Change</button>
+				</div>
+			</div>
+
+			<div >
+				<div class="row m">
+					<div class="col-xs-3 align-right">
+						
+					</div>
+					<div class="col-xs-9">
+						<!-- <label>You have not verified your email. Check your inbox for the verification code.</label> -->
+						<br/>
+					</div>
+				</div>
+
+				<div ng-show="codeSent">
+					<div class="row m">
+						<div class="col-xs-3 align-right">
+							<label>Verification Code</label>
+						</div>
+						<div class="col-xs-9">
+							<input type="text" ng-model="verificationCode">
+						</div>
+					</div>
+
+
+					<div class="row m">
+						<div class="col-xs-3 align-right">
+							
+						</div>
+						<div class="col-xs-9">
+							<button ng-click="verify()" ng-disabled="!verificationCode" class="btn btn-sky" ng-disabled="!co">Verify</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br/>
+      	</div>
+
+      	<div class="col-sm-4 company-logo">
+			<img ng-src="{{co.logo||my_current_company.company.logo}}"/>
+      	</div>
+		
+
+    </div>
+  </div>
+
+
+<div ng-include="'components/footer/footer.html'"></div>
+
+

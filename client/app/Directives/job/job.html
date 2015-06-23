@@ -1,0 +1,219 @@
+<div class="card job-card"> 
+	<div class="container-fluid small-card" ng-hide="full">
+		<div class="col-xs-3 pic">
+			<img ng-src="{{job.owner.avatar || 'assets/images/default_avatar.gif'}}"/>
+		</div>
+
+		<div class="col-xs-9 job-card-top-right">
+			<div class="row">
+				<img ng-src="{{job.company.logo}}" class="company-logo">
+				{{job.company.name}}
+				<button ng-hide="full" ng-click="expand($event)" class="pull-right btn btn-gray"><i class="fa fa-plus"></i></button>
+			</div>
+
+			<div class="row">
+				<a ng-show="$parent.User" ui-sref="job-full({id:job.id})">{{job.primaryRole}}</a>
+				<span ng-hide="$parent.User">{{job.primaryRole}}</span>
+			</div>
+
+			<div class="row icon-stats">
+				<div class="col-xs-4">
+					<i class="fa fa-comment"></i>{{job.applicants}}
+				</div>
+
+				<div class="col-xs-4">
+					<i class="fa fa-gear"></i>{{job.type}}
+				</div>
+
+				<div class="col-xs-4">
+					<i class="fa fa-map-marker"></i>{{job.roles[0].location}} 
+					<span ng-show="job.roles.length > 1">( and {{job.roles.length - 1}} more )</span>
+				</div>
+			</div>
+		</div>
+	</div>
+ 
+	<div class="container-fluid big-card">
+		<hr ng-show="full"/>
+		<div class="row">
+			<i class="fa fa-star-o fa-2x" ng-click="star(job.id)" ng-hide="!$parent.User || $parent.User.id == job.ownerId"></i>
+			<button ng-hide="full" ng-click="contract($event)" class="btn btn-gray pull-right"><i class="fa fa-minus"></i></button>
+			<button ng-click="share(job.id)" class="btn btn-gray pull-right"><i class="fa fa-share-alt"></i></button>
+		</div>
+		<hr/>
+
+		<div class="row">
+			<div class="col-xs-3 pic">
+				<img ng-src="{{job.owner.avatar || 'assets/images/default_avatar.gif'}} "/>
+			</div>
+			<div class="col-xs-9 poster-section-in-big-card">
+				<header>
+					<a ui-sref="profile-view({id:job.ownerId})" ng-show="$parent.User">{{job.owner.name}} <small>(view profile)</small></a>
+					<span ng-hide="$parent.User">{{job.owner.name}}</span>
+					<a class="social-link" ng-show="job.owner.blog" ng-href="{{job.owner.blog}}"><i class="fa fa-rss-square pull-right"></i></a>
+					<a class="social-link" ng-show="job.owner.google" ng-href="{{job.owner.google}}"><i class="fa fa-google-plus-square pull-right"></i></a>
+					<a class="social-link" ng-show="job.owner.twitter" ng-href="{{job.owner.twitter}}"><i class="fa fa-twitter-square pull-right"></i></a>
+					<a class="social-link" ng-show="job.owner.linkedin" ng-href="{{job.owner.linkedin}}"><i class="fa fa-linkedin-square pull-right"></i></a>
+					<a class="social-link" ng-show="job.owner.facebook" ng-href="{{job.owner.facebook}}"><i class="fa fa-facebook-square pull-right"></i></a>
+
+				</header>
+				<div class="clearfix"></div>
+				{{job.owner.tagline}}
+				<div class="clearfix"></div>
+				Posted {{job.owner.jobsPosted}} jobs.
+			</div>
+		</div>
+		<hr/>
+	
+		<div class="row">
+			<div class="col-xs-3">Jobs</div>
+			<div ng-repeat="role in job.roles">
+				<div class="col-xs-9">
+					<div class="row">
+						<div class="col-xs-10">
+							<label>Title</label> {{role.title}}
+							<div class="clearfix"></div>
+							<label>Location</label> {{role.location}}
+							<div class="clearfix"></div>
+							<label>Min Experience</label> {{role.minExperience}}
+							<div class="clearfix"></div>
+							<label>Special Skills</label><array-display tags="role.specialSkill"></array-display>
+							<div class="clearfix"></div>
+						</div>
+						<div class="col-xs-2"><!-- job.ownerId == $parent.$parent.User.id || -->
+							<button ng-click="apply(role, job.id)" ng-hide="!$parent.$parent.User || $parent.$parent.User.id == job.ownerId" class="btn btn-blue">Apply</button>
+						</div>
+					</div>
+					<br/>
+				</div>
+				<div class="col-xs-3"><!--Fillin` space--></div>
+			</div>
+		</div>
+		<hr/>
+
+		<div class="row" ng-show="job.skills">
+			<div class="col-xs-3">Job Skills</div>
+			<div class="col-xs-9">
+				<array-display tags="job.skills"></array-display>
+			</div>
+		</div>
+		<hr/>
+
+		<div class="row" ng-show="job.requirements">
+			<div class="col-xs-3">Desired from candidate</div>
+			<div class="col-xs-9">
+				{{job.requirements}}
+			</div>
+		</div>
+		<hr/>
+
+		<div class="row" ng-show="job.details">
+			<div class="col-xs-3">Detail job description</div>
+			<div class="col-xs-9">
+				{{job.details}}
+			</div>
+		</div>
+		<hr/>
+
+		<div class="row" ng-show="job.minQualification">
+			<div class="col-xs-3">Min. Qualifications</div>
+			<div class="col-xs-9">
+				{{job.minQualification}}
+			</div>
+		</div>
+		<hr/>
+
+		<div class="row" ng-show="job.benefits">
+			<div class="col-xs-3">Company Benefits</div>
+			<div class="col-xs-9">
+				{{job.benefits}}
+			</div>
+		</div>
+		<hr/>
+
+		<div class="row">
+			<div class="col-xs-4">
+				Job Status <span ng-show="job.active">Active</span><span ng-hide="job.active">Closed</span>
+				<div class="clearfix"></div>
+				Job Posted <span>{{job.date | ago}}</span>
+			</div>
+			<div class="col-xs-4 link-to-full-page">
+				<a ng-hide="full || !$parent.User" class="btn btn-gray" ui-sref="job-full({id:job.id})">Comments</a>
+			</div>
+			<div class="col-xs-4">
+				<!-- <button ng-hide="!$parent.User || $parent.User.id == job.ownerId" class="pull-right btn btn-red">Report Job</button> -->
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<script type="text/ng-template" id="apply_template.html">
+
+  <h4>Application</h4> 
+
+  <hr/>
+  	<div ng-hide="User.hasProfile">
+  		You must fill your profile before you can apply.
+  	</div>
+  	<div ng-show="User.hasProfile">
+		<div class="row jobs">
+			<div>
+				<div class="col-md-12 role">
+					<div class="row">
+						<div class="col-md-10 title">
+							<b><i class="fa fa-chevron-right"></i> {{ngDialogData.role.title}}</b>
+						</div>
+					</div>
+					<div class="row">	
+						<div class="col-md-4">
+							<header>Skills</header>
+							<array-display tags='ngDialogData.role.specialSkill'></array-display>
+						</div>
+						<div class="col-md-4">
+							<header>Experience</header>
+							{{ngDialogData.role.minExperience}}
+						</div>
+						<div class="col-md-4">	
+							<header>Location</header>
+							{{ngDialogData.role.location}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<Br/>
+		<textarea msd-elastic ng-model="message" placeholder="Message of Intent"></textarea>
+	</div>
+  <hr/>
+
+  <button ng-show="User.hasProfile" class="btn btn-blue" ng-click="apply()">Apply</button>
+  <button class="btn btn-gray" ng-click="closeThisDialog()">Cancel</button>
+
+</script>
+
+
+<script type="text/ng-template" id="share_template.html">
+
+<div class="share-dialog">
+	<h2>Share Job to Your Friends</h2>
+
+	<span style="cursor:pointer" ng-click="shareFacebook()" class="fa-stack fa-lg">
+	  <i style="color:#3b5998;cursor:pointer" class="fa fa-circle fa-stack-2x"></i>
+	  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+	  <div class="clearfix"></div>
+	</span>
+	<span style="cursor:pointer" ng-click="shareGooglePlus()" class="fa-stack fa-lg">
+	  <i style="color:#d34836;cursor:pointer" class="fa fa-circle fa-stack-2x"></i>
+	  <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+	  <div class="clearfix"></div>
+	</span>
+	<span style="cursor:pointer" ng-click="shareLinkedIn()" class="fa-stack fa-lg">
+	  <i style="color:#007bb6" class="fa fa-circle fa-stack-2x"></i>
+	  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+	  <div class="clearfix"></div>
+	</span>
+</div>
+  
+</script>

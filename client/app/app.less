@@ -1,0 +1,112 @@
+@import 'bootstrap/less/bootstrap.less';
+@import 'font-awesome/less/font-awesome.less';
+
+@icon-font-path: '/bower_components/bootstrap/fonts/';
+@fa-font-path: '/bower_components/font-awesome/fonts';
+
+/**
+ * App-wide Styles
+ */
+
+body {
+	background-image: url(../assets/images/bg-pattern.png);
+}
+
+* {
+	font-family: 'Lato', sans-serif;
+}
+.card {
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,.05);
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,.05);
+    background-color: white;
+    padding: 20px;
+    margin: 5px;
+}
+.btn-red {
+    color: #fff;
+    background-color: #db5566;
+    border-bottom:2px solid #af4451;
+}
+.btn-gray {
+    border-bottom: 2px solid #cecece;
+    background-color: #E7E7E7;
+    color: inherit;
+}
+.btn-blue {
+    color: #fff;
+    background-color: #0bacd3;
+    border-bottom:2px solid #098aa9;
+}
+.btn-green {
+    color: #fff;
+    background-color: #51bf87;
+    border-bottom:2px solid #41996c;
+}
+
+input[type=text], input[type=email], input[type=password], textarea, select {
+	width: 100%;
+	padding: 7px;
+	margin-bottom: 10px;
+	border: 1px solid #E2E3E4;
+	border-radius: 3px;
+}
+
+textarea {
+	height: 100px !important;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+	background: white !important;
+}
+
+form {
+	input.ng-dirty.ng-invalid {
+	    color: red;
+	}
+	input.ng-dirty.ng-valid {
+	    color: green;
+	}
+	textarea.ng-dirty.ng-invalid {
+	    color: red;
+	}
+	textarea.ng-dirty.ng-valid {
+	    color: green;
+	}
+}
+
+div.error {
+	background-color: #F2DEDE;
+	color: #B94A48;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+// injector
+@import 'Directives/arrayDisplay/arrayDisplay.less';
+@import 'Directives/arrayInput/arrayInput.less';
+@import 'Directives/job/job.less';
+@import 'Directives/search/search.less';
+@import 'candidates/candidates.less';
+@import 'company/company.less';
+@import 'general-settings/general-settings.less';
+@import 'job-edit/job-edit.less';
+@import 'job-full/job-full.less';
+@import 'jobs-applied/jobs-applied.less';
+@import 'jobs-starred/jobs-starred.less';
+@import 'main/main.less';
+@import 'my-jobs/my-jobs.less';
+@import 'new-job/new-job.less';
+@import 'profile-view/profile-view.less';
+@import 'profile/profile.less';
+@import 'footer/footer.less';
+@import 'modal/modal.less';
+@import 'navbar/navbar.less';
+@import 'sidebar/sidebar.less';
+// endinjector

@@ -1,0 +1,197 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+  <div class="container">
+    <div class="col-sm-4">
+      <div ng-include="'components/sidebar/sidebar.html'"></div>
+    </div>
+    <div class="col-sm-8 profile-view" id="profile">
+      <div class="card profile-top">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-4">
+					<img ng-src="{{TheUser.avatar}}"/>
+				</div>
+				<div class="col-xs-8">
+					<header>
+						{{TheUser.name}}
+						<a class="social-link" ng-show="TheUser.blog" ng-href="{{TheUser.blog}}"><i class="fa fa-rss-square pull-right"></i></a>
+						<a class="social-link" ng-show="TheUser.google" ng-href="{{TheUser.google}}"><i class="fa fa-google-plus-square pull-right"></i></a>
+						<a class="social-link" ng-show="TheUser.twitter" ng-href="{{TheUser.twitter}}"><i class="fa fa-twitter-square pull-right"></i></a>
+						<a class="social-link" ng-show="TheUser.linkedin" ng-href="{{TheUser.linkedin}}"><i class="fa fa-linkedin-square pull-right"></i></a>
+						<a class="social-link" ng-show="TheUser.facebook" ng-href="{{TheUser.facebook}}"><i class="fa fa-facebook-square pull-right"></i></a>
+					</header>
+					<p>
+						{{TheUser.tagline}}
+					</p>
+					
+				</div>
+			</div>
+		</div>
+      </div>
+
+      <div class="card profile-bottom">
+			<tabset>
+				<tab heading="Talent Profile">
+					<div ng-hide="TheUser.hasProfile">
+						<br/>
+						This user did not yet fill his public profile.
+					</div>
+					
+					<section ng-show="TheUser.hasProfile">
+
+						<br/>
+						
+<!-- 						<div class="row field">
+							<div class="col-xs-3">Your Status</div>
+							<div class="col-xs-9">
+								<span class="block" ng-class="getBlockClass('active')" ng-click="TheUser.status='active'">Actively Looking</span>
+								<span class="block" ng-class="getBlockClass('browsing')" ng-click="TheUser.status='browsing'">Just Browsing</span>
+							</div>
+						</div> -->
+
+						<div class="row field" ng-show="TheUser.primaryRole">
+							<div class="col-xs-3">Primary Role</div>
+							<div class="col-xs-9">
+								{{TheUser.primaryRole}}
+							</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.years">
+							<div class="col-xs-3">Years of Experience</div>
+							<div class="col-xs-9">
+								{{TheUser.years}}
+							</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.lookingFor">
+							<div class="col-xs-3">Looking For</div>
+							<div class="col-xs-9">
+								{{TheUser.lookingFor}}
+							</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.curentLocation">
+							<div class="col-xs-3">Current Location</div>
+							<div class="col-xs-9">{{TheUser.currentLocation}}</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.willMove.length">
+							<div class="col-xs-3">Will Move To</div>
+							<div class="col-xs-9">
+								<array-display tags="TheUser.willMove"></array-display>
+							</div>
+						</div>
+
+						<!-- <header ng-show="TheUser.education || TheUser.experience || TheUser.skills">Education experience</header> -->
+						<hr/>
+
+						<div class="row field" ng-show="TheUser.education.length">
+							<div class="col-xs-3">Education</div>
+							<div class="col-xs-9">
+								<!-- BEGIN Education Input -->
+								<div ng-repeat="edu in TheUser.education" class="group">
+									<label>Institution </label> {{edu.institution}} {{edu.year}} <Br/>
+									<label>Degree </label> {{edu.degree}} <Br/>
+									<label>Field </label> {{edu.field}} <br/>
+								</div>
+							<!-- END Education Input -->
+
+						
+							</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.experience.length">
+							<div class="col-xs-3">Experience</div>
+							<div class="col-xs-9">
+								<!-- BEGIN Experience Input -->
+								<div ng-repeat="exp in TheUser.experience" class="group exp">
+									<label>Company</label> {{exp.company}}<br/>
+									<label>Title</label> {{exp.title}}<Br/>
+									{{exp.startMounth}}-{{exp.startYear}}
+									&#8212;
+									<span ng-show="exp.working">
+										Present &nbsp;&nbsp;&nbsp;
+									</span>
+									<span ng-hide="exp.working">
+										{{exp.endMounth}} {{exp.endYear}}
+									</span>
+								</div>
+								<!-- END Experience Input -->							
+							</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.skills.length">
+							<div class="col-xs-3">Skills</div>
+							<div class="col-xs-9">	
+								<array-display tags="TheUser.skills"></array-display>
+							</div>
+						</div>
+
+						<!-- <header>Headline and accomplishments</header> -->
+						<hr/>
+
+						<div class="row field" ng-show="TheUser.tagline">
+							<div class="col-xs-3">Headline</div>
+							<div class="col-xs-9">{{TheUser.tagline}}</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.majorAccomplishment">
+							<div class="col-xs-3">Most impressive accomplishment</div>
+							<div class="col-xs-9">
+								{{TheUser.majorAccomplishment}}
+							</div>
+						</div>
+
+						<!-- <header>Social links</header> -->
+						<hr/>
+
+						<div class="row field" ng-show="TheUser.resumeUrl">
+							<div class="col-xs-3">Résumé</div>
+							<div class="col-xs-9">{{TheUser.resumeUrl}}</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.blog">
+							<div class="col-xs-3">Blog</div>
+							<div class="col-xs-9">{{TheUser.blog}}</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.bio">
+							<div class="col-xs-3">Bio/Personal</div>
+							<div class="col-xs-9">{{TheUser.bio}}</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.linkedIn">
+							<div class="col-xs-3">LinkedIn</div>
+							<div class="col-xs-9">{{TheUser.linkedIn}}</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.facebook">
+							<div class="col-xs-3">Facebok</div>
+							<div class="col-xs-9">{{TheUser.facebook}}</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.google">
+							<div class="col-xs-3">Google+</div>
+							<div class="col-xs-9">{{TheUser.google}}</div>
+						</div>
+
+						<div class="row field" ng-show="TheUser.twitter">
+							<div class="col-xs-3">Twitter</div>
+							<div class="col-xs-9">{{TheUser.twitter}}</div>
+						</div>
+
+
+
+					</section>
+
+				</tab>
+				<!-- <tab heading="Jobs Posted">
+					
+				</tab> -->
+			</tabset>
+      </div>
+    </div>
+  </div>
+
+
+<div ng-include="'components/footer/footer.html'"></div>

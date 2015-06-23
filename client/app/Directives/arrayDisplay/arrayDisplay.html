@@ -1,0 +1,14 @@
+<div ng-repeat = "tag in tags" class="skillsList-tag">
+	<span>{{tag}}</span>
+</div>
+
+<span ng-hide="tags.length"> None </span>
+
+<style>
+	div.skillsList-tag {
+		background-color: #efefef;
+		display: inline;
+		padding: 5px 3px 5px 3px;
+		margin-right: 5px;
+	}
+</style>

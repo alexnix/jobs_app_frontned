@@ -1,0 +1,44 @@
+<aside id="site-sidebar" ng-controller="SidebarCtrl">
+	<section class="dashboard" ng-show="User">
+		<header ng-click="toggle($event)">Job Seeker</header>
+		<ul>
+			<li><a ui-sref="main" class="working">All Jobs</a></li>
+			<!-- <li><a ui-sref="invitations" class="working">Invited Jobs</a></li> -->
+			<li><a ui-sref="jobs-starred" class="working">Starred Jobs</a></li>
+			<li><a ui-sref="jobs-applied" class="working">Jobs Applied</a></li>
+		</ul>
+	</section>
+
+	<section class="poster" ng-show="User">
+		<header ng-click="toggle($event)" >
+			Job Poster
+		</header>	
+		<ul>
+			<li><a ui-sref="new-job" class="working">Post a Job</a></li>
+			<li><a ui-sref="my-jobs" class="working">Jobs You Posted</a></li>
+			<!-- <li><a ui-sref="candidates" class="working">Interested Candidates</a></li> -->
+			<li><a ui-sref="company" class="working">My Company</a></li>
+		</ul>
+	</section>
+
+	<section class="my-account" ng-show="User">
+		<header ng-click="toggle($event)">
+			My Account
+		</header>
+		<ul>
+			<li><a ui-sref="profile" class="working">Edit Talent Profile</a></li>
+			<li><a ui-sref="general-settings" class="working">General Settings</a></li>
+			<!-- <li><a ui-sref="messages" class="working">Messages</a></li> -->
+		</ul>
+	</section>
+
+	<section class="no-user" ng-hide="User">
+		<header>B Corp</header>	
+		<ul style="display:block">
+			<li><a ui-sref="main" class="working">All Jobs</a></li>
+			<li><a ng-click="showLogin()" ui-sref="dashboard" class="working">Apply</a></li>
+			<li><a ng-click="showLogin()" ui-sref="dashboard" class="working">Post a Job</a></li>
+		</ul>
+	</section>
+</aside>
+		

@@ -1,0 +1,89 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+  <div class="container">
+    <div class="col-sm-4">
+      <div ng-include="'components/sidebar/sidebar.html'"></div>
+    </div>
+    <div class="col-sm-8" id="general-settings">
+      <div class="container-fluid panel">
+		
+			<header>General Settings</header>
+			<hr/>
+			<form name="genrealSettingsForm" ng-submit="save()" novalidate>
+				<div class="row">
+					<div class="col-xs-3">
+						Name
+					</div>
+					<div class="col-xs-9">
+						<input type="text" ng-model="User.name" required>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-3">
+						Profile
+					</div>
+					<div class="col-xs-3 pic">
+						<img ng-src="server/uploads/{{User.profile.avatar}}" ng-show="User.profile.avatar" class="fit-img">
+						<img ng-src="server/uploads/default.jpg" ng-hide="User.profile.avatar" class="fit-img">
+					</div>
+					<div class="col-xs-3">
+						<button class="btn btn-gray pull-left" 
+							ng-file-select ng-model="myFiles" // binds the selected files to the scope model
+						    ng-file-change="upload()" // will be called upon files being selected
+						                                                  // you can use $scope.$watch('myFiles') instead
+						    ng-multiple="false" // default false, allows selecting multiple files
+						    accept="image/*,*.pdf,*.xml" // see standard HTML file input accept attribute
+						    resetOnClick="false" // default true, reset the value to null and clear selected files when
+						                        // user cancels file select popup. (default behaviour in Chrome)
+						                        >
+							Change
+						</button>
+					</div>
+				</div>
+
+				
+
+				<div>
+					<div class="row">
+						<div class="col-xs-3">
+							New Password
+						</div>
+						<div class="col-xs-9">
+							<input type="password" ng-model="password1" placeholder="Minimum 8 characters" ng-minlength="8">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-3">
+							Retype Passwrd
+						</div>
+						<div class="col-xs-9">
+							<input type="password" ng-model="password2" match="password1" placeholder="Must match new password" ng-minlength="8">
+						</div>
+					</div>
+
+					
+				</div>
+
+			</form>
+
+			<hr/>
+
+			<div class="row">
+				<div class="col-xs-3">
+					
+				</div>
+				<div class="col-xs-9">
+					<button class="btn btn-sky" ng-disabled="genrealSettingsForm.$invalid" ng-click="save()">Save Changes</button>
+				</div>
+			</div>
+
+			<br/>
+		</div>
+    </div>
+  </div>
+
+
+<div ng-include="'components/footer/footer.html'"></div>
+
+

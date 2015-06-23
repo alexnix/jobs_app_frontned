@@ -1,0 +1,316 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+  <div class="container">
+    <div class="col-sm-4">
+      <div ng-include="'components/sidebar/sidebar.html'"></div>
+    </div>
+    <div class="col-sm-8" id="profile">
+      <div class="card profile-top">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-4">
+					<img ng-src="{{User.avatar}}"/>
+				</div>
+				<div class="col-xs-8">
+					<header>
+						{{User.name}}
+						<a class="social-link" ng-show="User.blog" ng-href="{{User.blog}}"><i class="fa fa-rss-square pull-right"></i></a>
+						<a class="social-link" ng-show="User.google" ng-href="{{User.google}}"><i class="fa fa-google-plus-square pull-right"></i></a>
+						<a class="social-link" ng-show="User.twitter" ng-href="{{User.twitter}}"><i class="fa fa-twitter-square pull-right"></i></a>
+						<a class="social-link" ng-show="User.linkedin" ng-href="{{User.linkedin}}"><i class="fa fa-linkedin-square pull-right"></i></a>
+						<a class="social-link" ng-show="User.facebook" ng-href="{{User.facebook}}"><i class="fa fa-facebook-square pull-right"></i></a>
+					</header>
+					<p>
+						{{User.tagline}}
+					</p>
+					<a ui-sref="profile-view({
+					id: User.id,
+					})">View as Public</a>
+				</div>
+			</div>
+		</div>
+      </div>
+
+      <div class="card profile-bottom">
+			<tabset>
+				<tab heading="Talent Profile">
+					<section>
+						<h3>Upload Your Information</h3>
+						<hr/>
+					</section>
+
+					<section>
+						<h3>Enter Your Information</h3>
+						<hr/>
+						
+						<div class="row field">
+							<div class="col-xs-3">Your Status</div>
+							<div class="col-xs-9">
+								<span class="block" ng-class="getBlockClass('active')" ng-click="User.status='active'">Actively Looking</span>
+								<span class="block" ng-class="getBlockClass('browsing')" ng-click="User.status='browsing'">Just Browsing</span>
+							</div>
+						</div>
+
+						<div class="row field">
+							<div class="col-xs-3">Primary Role*</div>
+							<div class="col-xs-9">
+								<select ng-model="User.primaryRole" class="wide" x>
+									<option value="">Select Primary Role...</option>
+									<option value="UI/UX Designer">UI/UX Designer</option>
+									<option value="Mobile Developer">Mobile Developer</option>
+									<option value="Backend Developer">Backend Developer</option>
+									<option value="Frontend Developer">Frontend Developer</option>
+									<option value="Data Scientist">Data Scientist</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row field">
+							<div class="col-xs-3">Years of Experience*</div>
+							<div class="col-xs-9">
+								<select ng-model="User.years" class="wide" required>
+									<option value="">Select</option>
+									<option value="Less than 1 year">Less than 1 year</option>
+									<option value="2 years">2 years</option>
+									<option value="3 years">3 years</option>
+									<option value="4 years">4 years</option>
+									<option value="5 years">5 years</option>
+									<option value="6 years">6 years</option>
+									<option value="7 years">7 years</option>
+									<option value="8 years">8 years</option>
+									<option value="9 years">9 years</option>
+									<option value="More than 10 years">More than 10 years</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row field">
+							<div class="col-xs-3">Looking For*</div>
+							<div class="col-xs-9">
+								<select ng-model="User.lookingFor" class="wide" required>
+									<option value="">Select</option>
+									<option value="FullTime">Full Time</option>
+									<option value="Contract">Contract</option>
+									<option value="Co-founders">Co-founders</option>
+									<option value="Internships">Internships</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row field">
+							<div class="col-xs-3">Current Location*</div>
+							<div class="col-xs-9"><input ng-model="User.currentLocation" type="text" data-scope="test"></div>
+						</div>
+
+						<div class="row field">
+							<div class="col-xs-3">Will Move To*</div>
+							<div class="col-xs-9">
+								<array-input tags="User.willMove" placeholder="Type Location and press Enter to add"></array-input>
+							</div>
+						</div>
+
+						<header>Your education, experience and skills help companies identify your strengths</header>
+
+						<div class="row field">
+							<div class="col-xs-3">Education</div>
+							<div class="col-xs-9">
+								<!-- BEGIN Education Input -->
+								<div ng-repeat="edu in User.education" class="group">
+								<div class="row">
+									<div class="col-xs-8">
+										<input type="text" placeholder="Institution" ng-model="edu.institution" required>
+									</div>
+									<div class="col-xs-4">
+										<input type="text" placeholder="Degree" ng-model="edu.degree" required>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-8">
+										<input type="text" placeholder="Field of Study" ng-model="edu.field" required>
+									</div>
+									<div class="col-xs-4">
+										<input type="number" placeholder="Year" ng-model="edu.year" placeholder="Year" min=1900 max={{currentYear+10}} style="width:100%" required>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+								<button type="button" class="pull-right btn btn-remove" ng-click="removeEducation($index)"><i class="fa fa-close"></i> Remove</button>
+								<br/>
+							</div>
+							<!-- END Education Input -->
+
+							<!-- Add Education Button -->
+							<button type="button" class="btn custom" ng-click="addEducation()">
+								<span class="fa-stack fa-lg">
+									<i style="font-size:20px;line-height:35px" class="fa fa-circle fa-stack-2x"></i>
+									<i style="font-size:10px;line-height:35px" class="fa fa-plus fa-stack-1x fa-inverse"></i>
+								</span>
+								Add Education
+							</button>
+							</div>
+						</div>
+
+						<div class="row field">
+							<div class="col-xs-3">Experience</div>
+							<div class="col-xs-9">
+								<!-- BEGIN Experience Input -->
+								<div ng-repeat="exp in User.experience" class="group exp">
+								<div class="row">
+									<div class="container-fluid">
+										<input type="text" placeholder="Company Name" ng-model="exp.company" required>
+									</div>
+								</div>
+								<div class="row">
+									<div class="container-fluid">
+										<input type="text" placeholder="Title" ng-model="exp.title" required>
+									</div>
+								</div>
+								<div class="row">
+									<div class="container-fluid">
+										<select ng-model="exp.startMounth" required>
+											<option selected value="">Mounth</option>
+											<option value="1">January</option>
+											<option value="2">February</option>
+											<option value="3">March</option>
+											<option value="4">April</option>
+											<option value="5">May</option>
+											<option value="6">June</option>
+											<option value="7">July</option>
+											<option value="8">August</option>
+											<option value="9">September</option>
+											<option value="10">October</option>
+											<option value="11">November</option>
+											<option value="12">December</option>
+										</select>
+										<input type="number" ng-model="exp.startYear" min="1900" max="{{currentYear}}" placeholder="Year" required>
+										&#8212;
+										<span ng-hide="exp.working">
+											<select ng-model="exp.endMounth" ng-init="exp.endMounth=''">
+												<option selected value="">Mounth</option>
+												<option value="1">January</option>
+												<option value="2">February</option>
+												<option value="3">March</option>
+												<option value="3">April</option>
+												<option value="4">May</option>
+												<option value="6">June</option>
+												<option value="7">July</option>
+												<option value="8">August</option>
+												<option value="9">September</option>
+												<option value="10">October</option>
+												<option value="11">November</option>
+												<option value="12">December</option>
+											</select>
+											<input type="number" ng-model="exp.endYear" min="1900" max="{{currentYear}}">
+										</span>
+										<span ng-show="exp.working">
+											Present &nbsp;&nbsp;&nbsp;
+										</span>
+										<input type="checkbox" ng-model="exp.working"> I currently work here
+										<button type="button" class="pull-right btn btn-remove" ng-click="removeExperience($index)"><i class="fa fa-close"></i> Remove</button>
+										
+									</div>
+								</div>
+							</div>
+							<!-- END Experience Input -->
+
+							<!-- Add Experience Button -->
+							<button type="button" class="btn custom" ng-click="addExp()">
+								<span class="fa-stack fa-lg">
+									<i style="font-size:20px;line-height:35px" class="fa fa-circle fa-stack-2x"></i>
+									<i style="font-size:10px;line-height:35px" class="fa fa-plus fa-stack-1x fa-inverse"></i>
+								</span>
+								Add Experience
+							</button>
+							</div>
+						</div>
+
+						<div class="row field">
+							<div class="col-xs-3">Skills*</div>
+							<div class="col-xs-9">
+								<array-input tags="User.skills" placeholder="Type skill and press Enter to add"></array-input>
+							</div>
+						</div>
+
+						<header>Your headline is the first thing in your profile that companies see</header>
+
+						<div class="row field">
+							<div class="col-xs-3">Headline*</div>
+							<div class="col-xs-9"><input type="text" ng-model="User.tagline" data-scope="test"></div>
+						</div>
+
+						<div class="row field">
+							<div class="col-xs-3">Most impressive accomplishment</div>
+							<div class="col-xs-9">
+								<textarea msd-elastic ng-model="User.majorAccomplishment"></textarea>
+							</div>
+						</div>
+
+						<header>Add URLs that showcase what you're capable of</header>
+
+						<div class="row field">
+							<div class="col-xs-3">Résumé</div>
+							<div class="col-xs-9"><input ng-model="User.resumeUrl" type="text" data-scope="test"></div>
+						</div>
+
+						<div class="row field">
+							<div class="col-xs-3">Blog</div>
+							<div class="col-xs-9"><input ng-model="User.blog" type="text" data-scope="test"></div>
+						</div>
+
+						<div class="row field">
+							<div class="col-xs-3">Bio/Personal</div>
+							<div class="col-xs-9"><input ng-model="User.bio" type="text" data-scope="test"></div>
+						</div>
+
+						<div class="row field" ng-hide="social">
+							<div class="col-xs-3">Social Profiles</div>
+							<div class="col-xs-9">
+								<button type="button" class="btn custom" ng-click="social=true">
+									<span class="fa-stack fa-lg">
+										<i style="font-size:20px;line-height:35px" class="fa fa-circle fa-stack-2x"></i>
+										<i style="font-size:10px;line-height:35px" class="fa fa-plus fa-stack-1x fa-inverse"></i>
+									</span>
+									Add Social Profile
+								</button>
+							</div>
+						</div>
+
+						<div ng-show="social">
+							<div class="row field">
+								<div class="col-xs-3">LinkedIn</div>
+								<div class="col-xs-9"><input ng-model="User.linkedIn" type="text"></div>
+							</div>
+
+							<div class="row field">
+								<div class="col-xs-3">Facebok</div>
+								<div class="col-xs-9"><input ng-model="User.facebook" type="text"></div>
+							</div>
+
+							<div class="row field">
+								<div class="col-xs-3">Google+</div>
+								<div class="col-xs-9"><input ng-model="User.google" type="text"></div>
+							</div>
+
+							<div class="row field">
+								<div class="col-xs-3">Twitter</div>
+								<div class="col-xs-9"><input ng-model="User.twitter" type="text"></div>
+							</div>
+						</div>
+
+						<div class="row field">
+							<div class="col-xs-3"></div>
+							<div class="col-xs-9"><button ng-click="updateProfile()" class="btn btn-blue">Save</button></div>
+						</div>
+
+					</section>
+
+				</tab>
+				<!-- <tab heading="Jobs Posted">
+					
+				</tab> -->
+			</tabset>
+      </div>
+    </div>
+  </div>
+
+
+<div ng-include="'components/footer/footer.html'"></div>

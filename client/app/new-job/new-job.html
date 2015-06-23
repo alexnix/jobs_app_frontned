@@ -1,0 +1,165 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+  <div class="container">
+    <div class="col-sm-4">
+      <div ng-include="'components/sidebar/sidebar.html'"></div>
+    </div>
+    <div class="col-sm-8">
+      <form id="new-job-form" name="jobForm">
+		<div class="container-fluid panel">
+		<div class="row">
+			<div class="col-md-3">
+				Job Type*
+				<div class="clearfix"></div>
+				<span ng-show="jobTitle.type.$error">This field is required</span>
+			</div>
+			<div class="col-md-9">
+				<select ng-init="job.type='Full Time'" name="type" ng-model="job.type" ng-options="option for option in ['Full Time', 'Part Time', 'Internship', 'Contract', 'Cofounder']" required>
+				</select>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-3">
+				Primary Role*
+				<div class="clearfix"></div>
+				<span ng-show="jobTitle.primrole.$error">This field is required</span>
+			</div>
+			<div class="col-md-9">
+				<select ng-init="job.primaryRole='Manager'" name="primrole" ng-model="job.primaryRole" ng-options="option for option in ['Developer', 'Manager']" required>
+				</select>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-3">
+				Skills*
+				<div class="clearfix"></div>
+				
+			</div>
+			<div class="col-md-9">
+				<array-input tags="job.skills" placeholder="Enter skill and press enter"></array-input>
+				<!-- <input type="text" ng-model="job.skills"> -->
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-3">
+				Min. Quakifications*
+				<div class="clearfix"></div>
+				<span ng-show="jobTitle.minq.$error">This field is required</span>
+			</div>
+			<div class="col-md-9">
+				<textarea msd-elastic ng-model="job.minQualification" name="minq" required></textarea>
+			</div>
+		</div>
+		</div>
+		<div class="container-fluid panel" ng-repeat="role in job.roles">
+				<div class="row">
+					<div class="col-md-3">
+						Job Title*
+						<div class="clearfix"></div>
+						<span ng-show="jobTitle.title.$error">This field is required</span>
+					</div>
+					<div class="col-md-9">
+						<input ng-model="role.title" type="text" required name="title"/>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-3">
+						Job Location*
+						<div class="clearfix"></div>
+						<span ng-show="jobTitle.location.$error">This field is required</span>
+					</div>
+					<div class="col-md-9">
+						<input type="text" ng-model="role.location" name="location" required/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						Min. Experience*
+						<div class="clearfix"></div>
+						<span ng-show="jobTitle.minexp.$error">This field is required</span>
+					</div>
+					<div class="col-md-9" ng-init="role.minExperience=1">
+						
+						<!-- <input type="number" ng-model="role.minExperience" min="1" max="100" name="minexp" required> -->
+						<!-- <div id="minExp" slider-input of="role.minExperience"></div> -->
+
+						<select ng-model="role.minExperience" class="wide" required ng-init="role.minExperience=''">
+							<option value="">Select</option>
+							<option value="Less than 1 year">Less than 1 year</option>
+							<option value="2 years">2 years</option>
+							<option value="3 years">3 years</option>
+							<option value="4 years">4 years</option>
+							<option value="5 years">5 years</option>
+							<option value="6 years">6 years</option>
+							<option value="7 years">7 years</option>
+							<option value="8 years">8 years</option>
+							<option value="9 years">9 years</option>
+							<option value="More than 10 years">More than 10 years</option>
+						</select>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						Special Skills
+						<div class="clearfix"></div>
+						
+					</div>
+					<div class="col-md-9">
+						<array-input tags="role.specialSkill" placeholder="Enter skill and press enter"></array-input>
+					</div>
+				</div>
+
+				<button ng-show="$index>0" ng-click="removeRole($index)" type="button" class="btn btn-gray">Remove</button>
+		</div>
+
+		<div class="container-fluid panel another" ng-click="addRole()"> 
+			<center><i class="fa fa-plus"></i> Add Another Job</center>
+		</div>
+		<div class="container-fluid panel">
+			<div class="row">
+				<div class="col-md-3">
+					Desired From Candidate
+					<div class="clearfix"></div>
+					<span ng-show="jobTitle.desired.$error">This field is required</span>
+				</div>
+				<div class="col-md-9">
+					<textarea msd-elastic ng-model="job.desired" name="desired" ></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					Detail job description
+					<div class="clearfix"></div>
+				</div>
+				<div class="col-md-9">
+					<textarea msd-elastic ng-model="job.detailJobDescription" ></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					Company Benefits
+					<div class="clearfix"></div>
+				</div>
+				<div class="col-md-9">
+					<textarea msd-elastic ng-model="job.companyBenefits"></textarea>
+				</div>
+			</div>
+		</div>
+	
+		<div class="clearfix"></div>
+		<button class="btn btn-gray" type="button" ng-click="save()" ng-disabled="jobForm.$invalid">Publish</button>
+	</form>
+
+
+    </div>
+  </div>
+
+
+<div ng-include="'components/footer/footer.html'"></div>
+
+

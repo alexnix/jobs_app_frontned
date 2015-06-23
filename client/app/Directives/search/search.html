@@ -1,0 +1,147 @@
+<div class="card search-widget">
+	<div class="search-widget-tags">
+		<div ng-repeat="location in obj.locations">
+			<span>{{location}}</span>
+			<i class="fa fa-close" ng-click="removeLocation($index)"></i>
+		</div>
+
+		<div ng-repeat="type in obj.types">
+			<span>{{type}}</span>
+			<i class="fa fa-close" ng-click="removeType($index)"></i>
+		</div>
+
+		<div ng-repeat="role in obj.roles">
+			<span>{{role}}</span>
+			<i class="fa fa-close" ng-click="removeRole($index)"></i>
+		</div>
+
+		<div ng-repeat="co in obj.companies">
+			<span>{{co}}</span>
+			<i class="fa fa-close" ng-click="removeCompany($index)"></i>
+		</div>
+
+		<div ng-repeat="key in obj.keywords">
+			<span>{{key}}</span>
+			<i class="fa fa-close" ng-click="removeKeyword($index)"></i>
+		</div>
+
+	</div>
+	<hr ng-show="obj.locations.length || obj.types.length || obj.roles.length || obj.companies.length || obj.keywords.length" />
+	<div class="container-fluid">
+		<ul>
+			<li class="header">Location <i class="fa fa-caret-down"></i></li>
+			<div class="ul-content">
+				<li ng-click="addLocation(location)" ng-repeat="location in locations">{{location}}</li>
+			</div>
+		</ul>
+
+		<ul>
+			<li class="header">Type <i class="fa fa-caret-down"></i></li>
+			<div class="ul-content">
+				<li ng-click="addType(type)" ng-repeat="type in types">{{type}}</li>
+			</div>
+		</ul>
+
+		<ul>
+			<li class="header">Role <i class="fa fa-caret-down"></i></li>
+			<div class="ul-content">
+				<li ng-click="addRole(role)" ng-repeat="role in roles">{{role}}</li>
+			</div>
+		</ul>
+
+		<ul>
+			<li class="header">Company <i class="fa fa-caret-down"></i></li>
+			<div class="ul-content">
+				<li ng-click="addCompany(company)" ng-repeat="company in companies">{{company}}</li>
+			</div>
+		</ul>
+	</div>
+	<hr/>
+	<div class="search-widget-keywordinput-area">
+		<i class="fa fa-search"></i>
+		<input ng-keyup="addTag($event)" ng-model="newTag" type="text" placeholder="Enter Keyword and Press Enter">
+	</div>
+</div>
+
+
+
+<style>
+div.search-widget {
+	margin-bottom: 15px;
+}
+
+div.search-widget ul {
+	float: left;
+	list-style-type: none;
+	padding-left: 0px;
+	padding: 5px;
+	margin-bottom: 0px;
+	width: 25%;
+}
+div.search-widget hr {
+	margin-top: 10px;
+	margin-bottom: 10px;	
+}
+
+div.search-widget ul li{
+	padding: 5px;
+	cursor: pointer;
+}
+
+div.search-widget ul li:hover {
+	background-color: #efefef;
+}
+
+div.search-widget ul li.header:hover {
+	background-color: white;
+}
+
+div.search-widget ul div.ul-content {
+	width: 24%;
+	max-height: 300px;
+	overflow-y: auto;
+}
+
+div.search-widget ul li.header {
+	font-size: 15px;
+	font-weight: bold;
+	width: 100%;
+	display: block;
+	border-radius: 5px;
+}
+
+div.search-widget ul:hover > div.ul-content {
+	display: block;
+
+}
+
+div.search-widget ul div.ul-content {
+	display: none;
+	position: absolute;
+	background-color: white;
+	border: 1px solid #dfdfdf;
+
+	z-index: 999;
+}
+
+div.search-widget-keywordinput-area input {
+	width: 95%;
+	padding: 3px;
+	border: 0px;
+	outline: 0;
+}
+
+
+div.search-widget div.search-widget-tags{
+	overflow: auto;
+}
+div.search-widget div.search-widget-tags div {
+	float: left;
+	margin: 3px;
+	padding: 5px 7px 5px 7px;
+	background-color: #efefef;
+}
+div.search-widget div.search-widget-tags div i {
+	cursor: pointer;
+}
+</style>

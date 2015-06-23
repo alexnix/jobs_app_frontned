@@ -1,0 +1,72 @@
+<header id="navbar-header" ng-controller="NavbarCtrl">
+  <div class="top">
+  </div>
+  <div class="bottom">
+    <div class="container">
+      <div class="col-sm-4 first-header-tab">
+        <a ui-sref="main">B Comp</a>
+      </div>
+      <div class="col-sm-4 second-header-tab">
+        {{page_title}}
+      </div>
+      <div class="col-sm-4 third-header-tab">
+        <span class="login-register-btn" ng-click="loginDialog()" ng-hide="User">LOGIN OR REGISTER</span>
+        <div class="dropdown pull-right" ng-show="User">
+          <button class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            {{User.name || "Options"}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu menu" style="list-style-type:none" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation"><a ui-sref="profile">Profile</a></li>
+            <li role="presentation"><a ui-sref="main">Dashboard</a></li>
+              <li ng-show="User.isAdmin" role="presentation" class="divider"></li>
+              <li ng-show="User.isAdmin" role="presentation"><a ui-sref="admin">Admin</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a style="cursor:pointer" ng-click="logout()">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+
+<script type="text/ng-template" id="login_template.html">
+
+  <tabset>
+    <tab heading="Login">
+      <br/>
+      <form ng-submit="doLogin()" name="loginForm" novalidate>
+      <div class="error" ng-show="loginError">
+        There was an error. Make sure your login details are correct and try again.
+      </div>
+       <input type="email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" placeholder="Email" ng-model="login.email" required/>
+        <input type="password" placeholder="Password" ng-model="login.password" required/>
+        <input type="submit" class="btn" ng-disabled="loginForm.$invalid" value="Login" />
+
+      </form>
+    </tab>
+    <tab heading="Register">
+      <br/>
+      <form ng-submit="doRegister()" name="registerForm" novalidate>
+         <div class="error" ng-show="registerError">
+          This email is already in the database.
+        </div>
+        <input type="text" placeholder="Name" ng-model="register.name" required>
+
+        <input type="email" placeholder="Email" ng-model="register.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"  required>
+        
+        <small ng-show="registerForm.password.$error.minlength">must be at least 8 characters</small>
+        <input type="password" placeholder="Password" name="password" ng-model="register.password" ng-minlength="8" required>
+
+        <small ng-show="registerForm.repassword.$error.match">does not match</small>
+        <input type="password" placeholder="Retype Password" name="repassword" ng-model="register.repassword" match="register.password" required>
+
+        <input ng-disabled="registerForm.$invalid" type="submit" value="Register" class="btn">
+      </form>
+
+    </tab>
+  </tabset>
+
+</script>
