@@ -161,6 +161,25 @@ angular.module('jobsClientApp')
 			});
 		},
 
+		report: function(id, message) {
+			return $http({
+				method: 'POST',
+				url: 'http://rukawajobs.appspot.com/rest/job/report',
+				headers: {
+					serviceKey: 'k24bL3b4389nclewqnc2bNK9bckjKBFSWI84w2',	
+					email: $cookies.get('email'),
+					token: $cookies.get('token'),
+					"Content-Type": "text/plain"
+				},
+				data: { 
+					id:  id,
+					report: {
+						message: message,
+					}
+				},
+			});
+		},
+
 		star: function(id) {
 			return $http({
 				method: 'POST',
@@ -175,8 +194,32 @@ angular.module('jobsClientApp')
 			}); 
 		},
 
+		unstar: function(id) {
+			return $http({
+				method: 'POST',
+				url: 'http://rukawajobs.appspot.com/rest/job/unstar',
+				headers: {
+					serviceKey: 'k24bL3b4389nclewqnc2bNK9bckjKBFSWI84w2',	
+					email: $cookies.get('email'),
+					token: $cookies.get('token'),
+					"Content-Type": "text/plain"
+				},
+				data: {id: id}
+			});
+		},
+
 		getStarred: function() {
 			return $http.get('http://rukawajobs.appspot.com/rest/me/job/starred/0', {
+				headers: {
+					serviceKey: 'k24bL3b4389nclewqnc2bNK9bckjKBFSWI84w2',
+					token: $cookies.get('token'),
+					email: $cookies.get('email'),
+				}
+			});
+		},
+
+		getReported: function() {
+			return $http.get('http://rukawajobs.appspot.com/rest/me/job/reported/0', {
 				headers: {
 					serviceKey: 'k24bL3b4389nclewqnc2bNK9bckjKBFSWI84w2',
 					token: $cookies.get('token'),

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobsClientApp')
-  .controller('ProfileCtrl', function ($scope, API, Notification) {
+  .controller('ProfileCtrl', function ($scope, API, Notification, fileUpload) {
   	$scope.sidebar_section = "my-account";
   	$scope.page_title = "Edit Profile";
 
@@ -15,6 +15,12 @@ angular.module('jobsClientApp')
     	if ( $scope.User.experience == null )
     		$scope.User.education.push({});
     });
+
+    $scope.uploadResume = function() {
+		var file = $scope.myFile;
+		var uploadUrl = 'http://rukawajobs.appspot.com/rest/upload/resume';
+		fileUpload.uploadResume(file, uploadUrl);
+    }
 
     $scope.addEducation = function(){
 		if( $scope.User.education == null )

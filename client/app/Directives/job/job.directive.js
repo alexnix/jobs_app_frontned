@@ -30,8 +30,41 @@ angular.module('jobsClientApp')
       		bigCard.slideUp();
       	};
 
-            scope.star = function(id) {
+            scope.youStarred = function (arr, id) {
+                  return arr.indexOf(id) != -1;
+            };
+
+            scope.star = function(id, arr) {
                   API.star(id);
+                  arr.push(id);
+            };
+
+            scope.unstar = function(id, arr) {
+                  API.unstar(id);
+                  arr.splice(arr.indexOf(id), 1);
+            };
+
+            scope.youReported = function(arr, id) {
+                  return arr.indexOf(id) != -1;
+            }
+
+            scope.repot = function(jobId, arr) {
+                  ngDialog.open({
+                        template: "report_template.html",
+                        data: {
+                              jobId: jobId,
+                              arr: arr,
+                        },
+                        controller: ['$scope', 'API', 'Notification',function($scope, API, Notification){
+                              $scope.report = function() {
+                                    API.report($scope.ngDialogData.jobId, $scope.message).then(function(){
+                                          $scope.closeThisDialog();
+                                          $scope.ngDialogData.arr.push($scope.ngDialogData.jobId);
+                                          Notification.success({message: "Job was reported. Thank you !", title: "Success"});
+                                    });
+                              }
+                        }]
+                  });
             }
 
             scope.share = function(jobId) {

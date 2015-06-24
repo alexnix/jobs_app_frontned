@@ -5,12 +5,8 @@
       <div ng-include="'components/sidebar/sidebar.html'"></div>
     </div>
     <div class="col-sm-8">
-     <!--  <search obj="searcher"></search> -->
-      
-      <job ng-repeat="job in allJobs" job="job.job"></job>
-      <div class="card" ng-hide="allJobs.length">
-        You have not applied to any job yet.
-      </div>
+      <pre>{{allJobs|json}}</pre>
+      <job ng-repeat="job in allJobs" job="job"></job>
     </div>
   </div>
 

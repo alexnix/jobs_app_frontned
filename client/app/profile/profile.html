@@ -9,11 +9,11 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-4">
-					<img ng-src="{{User.avatar}}"/>
+					<img class="fit-img" ng-src="{{User.avatar || 'assets/images/default_avatar.gif'}}"/>
 				</div>
 				<div class="col-xs-8">
 					<header>
-						{{User.name}}
+						{{User.name || "user"+User.id}}
 						<a class="social-link" ng-show="User.blog" ng-href="{{User.blog}}"><i class="fa fa-rss-square pull-right"></i></a>
 						<a class="social-link" ng-show="User.google" ng-href="{{User.google}}"><i class="fa fa-google-plus-square pull-right"></i></a>
 						<a class="social-link" ng-show="User.twitter" ng-href="{{User.twitter}}"><i class="fa fa-twitter-square pull-right"></i></a>
@@ -37,6 +37,10 @@
 					<section>
 						<h3>Upload Your Information</h3>
 						<hr/>
+						<p>Upload Resume</p>
+						<p><input type="file" file-model="myFile" onchange="angular.element(this).scope().uploadResume()"/></p>
+						
+						<b ng-show="User.resumeName">Your curent resume is: <a ng-scr="{{User.resumeLink}}">{{User.resumeName}}</a></b>
 					</section>
 
 					<section>

@@ -24,25 +24,14 @@
 						Profile
 					</div>
 					<div class="col-xs-3 pic">
-						<img ng-src="server/uploads/{{User.profile.avatar}}" ng-show="User.profile.avatar" class="fit-img">
-						<img ng-src="server/uploads/default.jpg" ng-hide="User.profile.avatar" class="fit-img">
+						<img ng-src="{{User.avatar || 'assets/images/default_avatar.gif'}}" class="fit-img">
 					</div>
 					<div class="col-xs-3">
-						<button class="btn btn-gray pull-left" 
-							ng-file-select ng-model="myFiles" // binds the selected files to the scope model
-						    ng-file-change="upload()" // will be called upon files being selected
-						                                                  // you can use $scope.$watch('myFiles') instead
-						    ng-multiple="false" // default false, allows selecting multiple files
-						    accept="image/*,*.pdf,*.xml" // see standard HTML file input accept attribute
-						    resetOnClick="false" // default true, reset the value to null and clear selected files when
-						                        // user cancels file select popup. (default behaviour in Chrome)
-						                        >
-							Change
-						</button>
+						<input type="file" file-model="myFile" onchange="angular.element(this).scope().uploadImage()"/>
 					</div>
 				</div>
 
-				
+				<Br/>
 
 				<div>
 					<div class="row">

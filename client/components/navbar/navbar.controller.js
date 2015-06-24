@@ -8,7 +8,7 @@ angular.module('jobsClientApp')
       $cookies.remove('email');
       $cookies.remove('token');
       $state.go('main');
-      window.location.reload();
+      //window.location.reload();
     };
 
     $scope.loginDialog = function(){

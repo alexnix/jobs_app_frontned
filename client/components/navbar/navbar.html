@@ -13,7 +13,7 @@
         <span class="login-register-btn" ng-click="loginDialog()" ng-hide="User">LOGIN OR REGISTER</span>
         <div class="dropdown pull-right" ng-show="User">
           <button class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-            {{User.name || "Options"}}
+            {{User.name || "user"+User.id}}
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu menu" style="list-style-type:none" role="menu" aria-labelledby="dropdownMenu1">
@@ -53,7 +53,7 @@
          <div class="error" ng-show="registerError">
           This email is already in the database.
         </div>
-        <input type="text" placeholder="Name" ng-model="register.name" required>
+        <!--<input type="text" placeholder="Name" ng-model="register.name" required> -->
 
         <input type="email" placeholder="Email" ng-model="register.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"  required>
         

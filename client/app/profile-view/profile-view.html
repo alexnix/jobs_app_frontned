@@ -9,11 +9,11 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-4">
-					<img ng-src="{{TheUser.avatar}}"/>
+					<img class="fit-img" ng-src="{{TheUser.avatar || 'assets/images/default_avatar.gif'}}"/>
 				</div>
 				<div class="col-xs-8">
 					<header>
-						{{TheUser.name}}
+						{{TheUser.name || "user"+TheUser.id}}
 						<a class="social-link" ng-show="TheUser.blog" ng-href="{{TheUser.blog}}"><i class="fa fa-rss-square pull-right"></i></a>
 						<a class="social-link" ng-show="TheUser.google" ng-href="{{TheUser.google}}"><i class="fa fa-google-plus-square pull-right"></i></a>
 						<a class="social-link" ng-show="TheUser.twitter" ng-href="{{TheUser.twitter}}"><i class="fa fa-twitter-square pull-right"></i></a>

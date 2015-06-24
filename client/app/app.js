@@ -10,7 +10,6 @@ angular.module('jobsClientApp', [
   'ngDialog',
   'ngCookies',
   'ui-notification',
-  'ngFileUpload',
   'monospaced.elastic',
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
