@@ -19,7 +19,7 @@ angular.module('jobsClientApp')
     $scope.uploadResume = function() {
 		var file = $scope.myFile;
 		var uploadUrl = 'http://rukawajobs.appspot.com/rest/upload/resume';
-		fileUpload.uploadResume(file, uploadUrl);
+		fileUpload.uploadResume(file, uploadUrl, file.name);
     }
 
     $scope.addEducation = function(){
