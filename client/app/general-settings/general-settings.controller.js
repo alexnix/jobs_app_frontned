@@ -5,11 +5,35 @@ angular.module('jobsClientApp')
     $scope.page_title = "General Settings";
     $scope.sidebar_section = "my-account";
 
-    $scope.uploadImage = function () {
-      var file = $scope.myFile;
+    // $scope.uploadImage = function () {
+    //   var file = $scope.myFile;
+    //   var uploadUrl = 'http://rukawajobs.appspot.com/rest/upload/image';
+    //   fileUpload.uploadFileToUrl(file, uploadUrl);
+    // };
+
+    $scope.myImage='';
+    $scope.myCroppedImage='';
+
+    var handleFile = function(evt){
+      var file=evt.currentTarget.files[0];
+      var reader = new FileReader();
+      reader.onload = function (evt) {
+        $scope.$apply(function($scope){
+          $scope.myImage=evt.target.result;
+        });
+      };
+      reader.readAsDataURL(file);
+
+      $('.crop-row').show();
+    };  
+
+    $scope.cropIt = function(){
       var uploadUrl = 'http://rukawajobs.appspot.com/rest/upload/image';
-      fileUpload.uploadFileToUrl(file, uploadUrl);
+      fileUpload.uploadFileToUrl($scope.myCroppedImage, uploadUrl);
+      $('.crop-row').hide();
     };
+
+    angular.element(document.querySelector('#circular-file-input')).on('change',handleFile);
 
     $scope.save = function() {
     	API.updateProfile({profile:$rootScope.User}).then(function(res){

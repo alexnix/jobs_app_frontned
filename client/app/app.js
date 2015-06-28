@@ -11,6 +11,7 @@ angular.module('jobsClientApp', [
   'ngCookies',
   'ui-notification',
   'monospaced.elastic',
+  'ngImgCrop',
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider

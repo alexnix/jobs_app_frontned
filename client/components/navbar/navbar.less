@@ -1,23 +1,37 @@
 header#navbar-header{
+	.logo-section {
+		a {
+			color: #333;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+		img {
+			float: left;
+			margin-right: 20px;
+		}
+		h2 {
+			margin-bottom: 0px;
+		}
+	}
 	margin-bottom: 20px;
 	span.login-register-btn {
 		cursor: pointer;
 	}
 	div.top {
 		height: 20px;
-		background-color: #24262b;
+		//background-color: #24262b;
 		width: 100%;
 	}
 	div.bottom {
-		background-color: #333;
-		color: white;
+		color: #333;
 		padding: 20px;
 		div.first-header-tab{
 			font-size: 24px;
 			font-weight: bold;
 			text-transform: uppercase;
 			a {
-				color: white;
+				color: #333;
 				&:hover {
 					text-decoration: none;
 				}
@@ -29,14 +43,29 @@ header#navbar-header{
 			height: 34px;
 		}
 		div.third-header-tab{
+			line-height: 100px;
+
 			text-align: right;
-			line-height: 34px;
-			height: 34px;
+			height: 100px;
+			a {
+				padding-left: 15px;
+				color: #333;
+				&:hover {
+					text-decoration: none;
+				}
+			}
+			span, .dropdown {
+				margin-left: 15px;
+			}
+			span.caret {
+				margin-left: 0px;
+			}
 			button {
 				background: transparent;
 				border: 0px;
 			}
 			ul {
+				margin-top: -35px;
 				text-align: left;
 			}
 		}

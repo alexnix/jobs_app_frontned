@@ -1,18 +1,17 @@
 <div class="card job-card"> 
-	<div class="container-fluid small-card" ng-hide="full">
-		<div class="col-xs-3 pic">
-			<img ng-src="{{job.owner.avatar || 'assets/images/default_avatar.gif'}}"/>
+	<div class="container-fluid small-card" ng-hide="full" ng-click="expand($event)">
+		<div class="col-xs-2 pic">
+			<img ng-src="{{job.company.logo}}" class="company-logo">
 		</div>
 
-		<div class="col-xs-9 job-card-top-right">
+		<div class="col-xs-10 job-card-top-right">
 			<div class="row">
-				<img ng-src="{{job.company.logo}}" class="company-logo">
 				{{job.company.name}}
-				<button ng-hide="full" ng-click="expand($event)" class="pull-right btn btn-gray"><i class="fa fa-plus"></i></button>
+				<a ng-hide="!$parent.User" class=" pull-right" ui-sref="job-full({id:job.id})">View Full Job</a>
 			</div>
 
 			<div class="row">
-				<a ng-show="$parent.User" ui-sref="job-full({id:job.id})">{{job.primaryRole}}</a>
+				<a ng-show="$parent.User" ui-sref="job-full({id:job.id})">{{job.primaryRole}} &raquo;</a>
 				<span ng-hide="$parent.User">{{job.primaryRole}}</span>
 			</div>
 
@@ -36,11 +35,22 @@
 	<div class="container-fluid big-card">
 		<hr ng-show="full"/>
 		<div class="row">
-			<div class="col-xs-6" ng-hide="!$parent.User">
+			<div class="col-xs-2" ng-hide="!$parent.User">
 				<i ng-hide="youStarred($parent.User.starred, job.id)" class="fa fa-star-o fa-2x" ng-click="star(job.id, $parent.User.starred)" ng-hide="!$parent.User || $parent.User.id == job.ownerId"></i>
 				<i ng-show="youStarred($parent.User.starred, job.id)" class="fa fa-star fa-2x" ng-click="unstar(job.id, $parent.User.starred)"></i>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-7">
+				<div class="fb-like" data-href="{{theJob(job.id)}}" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+				<div class="fb-send" data-href="https://developers.facebook.com/docs/plugins/"></div>
+
+				<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>
+				<div class="g-plus" data-action="share"></div>
+
+				<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+<script type="IN/Share"></script>		
+
+			</div>
+			<div class="col-xs-3">
 				<button ng-hide="full" ng-click="contract($event)" class="btn btn-gray pull-right"><i class="fa fa-minus"></i></button>
 				<button ng-click="share(job.id)" class="btn btn-gray pull-right"><i class="fa fa-share-alt"></i></button>
 			</div>
@@ -53,8 +63,8 @@
 			</div>
 			<div class="col-xs-9 poster-section-in-big-card">
 				<header>
-					<a ui-sref="profile-view({id:job.ownerId})" ng-show="$parent.User">{{job.owner.name || "user"+job.ownerId}} <small>(view profile)</small></a>
-					<span ng-hide="$parent.User">{{job.owner.name || "user"+job.ownerId}}}</span>
+					<a ui-sref="profile-view({id:job.ownerId})" ng-show="$parent.User">{{job.owner.name || "user"+job.ownerId}} &raquo;</a>
+					<span ng-hide="$parent.User">{{job.owner.name || "user"+job.ownerId}}</span>
 					<a class="social-link" ng-show="job.owner.blog" ng-href="{{job.owner.blog}}"><i class="fa fa-rss-square pull-right"></i></a>
 					<a class="social-link" ng-show="job.owner.google" ng-href="{{job.owner.google}}"><i class="fa fa-google-plus-square pull-right"></i></a>
 					<a class="social-link" ng-show="job.owner.twitter" ng-href="{{job.owner.twitter}}"><i class="fa fa-twitter-square pull-right"></i></a>

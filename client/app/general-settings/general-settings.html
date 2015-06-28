@@ -25,9 +25,22 @@
 					</div>
 					<div class="col-xs-3 pic">
 						<img ng-src="{{User.avatar || 'assets/images/default_avatar.gif'}}" class="fit-img">
+
 					</div>
 					<div class="col-xs-3">
-						<input type="file" file-model="myFile" onchange="angular.element(this).scope().uploadImage()"/>
+						<!-- <input type="file" file-model="myFile" onchange="angular.element(this).scope().uploadImage()"/> -->
+						<input type="file" id="circular-file-input">
+					</div>
+				</div>
+
+				<div class="row crop-row">
+					<div class="col-xs-3">
+						<button type="button" ng-click="cropIt()" class="btn btn-blue">Crop and Upload</button>
+					</div>
+					<div class="col-xs-9">
+						<div class="cropArea">
+							<img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+						</div>
 					</div>
 				</div>
 

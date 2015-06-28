@@ -18,7 +18,8 @@
     "ngDialog": "~0.4.0",
     "fontawesome": "~4.3.0",
     "angular-ui-notification": "~0.0.11",
-    "angular-elastic": "~2.4.2"
+    "angular-elastic": "~2.4.2",
+    "ngImgCrop": "~0.3.2"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

@@ -17,6 +17,7 @@
       <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog.css" />
       <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog-theme-default.css" />
       <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css" />
+      <link rel="stylesheet" href="bower_components/ngImgCrop/compile/minified/ng-img-crop.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -29,6 +30,18 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=293753173999428";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <!-- Add your site or application content here -->
     <div ui-view=""></div>
@@ -62,6 +75,7 @@
       <script src="bower_components/ngDialog/js/ngDialog.js"></script>
       <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
       <script src="bower_components/angular-elastic/elastic.js"></script>
+      <script src="bower_components/ngImgCrop/compile/minified/ng-img-crop.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
         <!-- build:js({.tmp,client}) app/app.js -->

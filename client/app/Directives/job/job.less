@@ -1,6 +1,6 @@
 div.job-card {
 	div.small-card{
-
+		cursor: pointer;
 		padding-left: 0px;
 		padding-right: 0px;
 		div.pic {
@@ -8,13 +8,14 @@ div.job-card {
 			padding-left: 0px;
 			img {
 				width: 100%;
-				border-radius: 10px;
+				border-radius: 99999px !important;
 			}
 		}
 		div.job-card-top-right {
 			img.company-logo {
 				height: 37px;
 				width: auto;
+				border-radius: 9999px !important;
 			}
 			div.row {
 				margin-left: 0px !important;
@@ -38,7 +39,21 @@ div.job-card {
 		
 		display: none;
 		a.social-link {
-			color: darken(#dfdfdf, 70%);
+			i.fa-facebook-square {
+				color: #3b5998;
+			}
+			i.fa-google-plus-square {
+				color: #d34836;
+			}
+			i.fa-twitter-square {
+				color: #00aced;
+			}
+			i.fa-linkedin-square {
+				color: #007bb6;
+			}
+			i.fa-rss-square {
+				color: #f26522;
+			}
 		}
 		button.pull-right {
 			margin-left: 5px;
@@ -50,7 +65,7 @@ div.job-card {
 		div.pic {
 			img {
 				width: 100%;
-				border-radius: 10px;
+				border-radius: 99999px !important;
 			}
 		}
 		div.col-xs-3, div.col-xs-4 {

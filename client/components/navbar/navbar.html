@@ -3,13 +3,18 @@
   </div>
   <div class="bottom">
     <div class="container">
-      <div class="col-sm-4 first-header-tab">
-        <a ui-sref="main">B Comp</a>
+      <div class="col-sm-8 logo-section">
+        <a ui-sref="main">
+          <img src="assets/images/logo.png" width=100px/>
+          <h2>ReferDost</h2>
+          <small>Employee referral jobs </small>
+        </a>
       </div>
-      <div class="col-sm-4 second-header-tab">
-        {{page_title}}
-      </div>
+
       <div class="col-sm-4 third-header-tab">
+        
+        <a ui-sref="">How It Works</a>
+        <a ui-sref="">Contact Us</a>
         <span class="login-register-btn" ng-click="loginDialog()" ng-hide="User">LOGIN OR REGISTER</span>
         <div class="dropdown pull-right" ng-show="User">
           <button class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -25,6 +30,7 @@
             <li role="presentation"><a style="cursor:pointer" ng-click="logout()">Logout</a></li>
           </ul>
         </div>
+
       </div>
     </div>
   </div>
